@@ -10,10 +10,10 @@
                     <t t-set="pageName" t-value="'Owl Page'"/>
                     <div id="wrap">
                         <div class="container">
-                            <div class="row">
-                                <h1>Owl Example (with website module)</h1>
-                                <div class="owl-example"/>
-                            </div>
+                          <h1>Owl Example (with website module)</h1>
+
+                          <div class="owl-example"/>
+                          
                         </div>
                     </div>
                 </t>

@@ -10,9 +10,7 @@ odoo.define('website_owl.owl_example_widget', async function(require) {
     mount
   } = owl;
 
-  const {
-    useState
-  } = owl.hooks;
+  const { useState } = owl.hooks;
 
   const templates = await owl.utils.loadFile('/website_owl/static/src/xml/template.xml');
   const env = {
@@ -31,28 +29,17 @@ odoo.define('website_owl.owl_example_widget', async function(require) {
         value: 0
       });
     }
-
   };
 
-
-  //
-  // Object.assign(OwlClick, {
-  //   template: new owl.QWeb({
-  //     templates
-  //   })
-  // });
-
-
-
   const OwlWidget = publicWidget.Widget.extend({
-
     selector: '.owl-example',
 
     start: async function() {
-      console.log(this)
+
       const $target = this.$target;
       const owlclick = new OwlClick();
-      await owlclick.mount($target[0]);
+
+      owlclick.mount($target[0]);
 
     },
   });
