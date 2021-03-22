@@ -1,0 +1,9 @@
+<templates>
+    <t t-name="OwlExample" owl="1">
+        <div class="alert alert-primary" role="alert">
+            <button t-on-click="state.value++">
+                Click! [<t t-esc="state.value"/>]
+            </button>
+        </div>
+    </t>
+</templates>

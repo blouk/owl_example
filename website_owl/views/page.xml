@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="owl_page" model="ir.ui.view">
+        <field name="name">Owl Page</field>
+        <field name="type">qweb</field>
+        <field name="key">website_owl.owl_page</field>
+        <field name="arch" type="xml">
+            <t name="Owl Page" priority="29" t-name="website_owl.owl_page">
+                <t t-call="website.layout">
+                    <t t-set="pageName" t-value="'Owl Page'"/>
+                    <div id="wrap">
+                        <div class="container">
+                            <div class="row">
+                                <h1>Owl Example (with website module)</h1>
+                                <div class="owl-example"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+    <data noupdate="1">
+        <record id="owl_page_page" model="website.page">
+            <field name="is_published">True</field>
+            <field name="url">/owl</field>
+            <field name="view_id" ref="owl_page"/>
+            <field name="track">False</field>
+        </record>
+
+        <record id="owl_page_menu" model="website.menu">
+            <field name="name">Owl Example</field>
+            <field name="url">/owl</field>
+            <field name="page_id" ref="website_owl.owl_page_page"/>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">0</field>
+        </record>
+    </data>
+</odoo>
