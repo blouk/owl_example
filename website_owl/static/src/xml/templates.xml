@@ -1,9 +1,14 @@
 <templates>
-    <t t-name="OwlExample" owl="1">
+    <t t-name="OwlClickAlert" owl="1">
         <div class="alert alert-primary" role="alert">
             <button t-on-click="state.value++">
                 Click! [<t t-esc="state.value"/>]
             </button>
         </div>
     </t>
+
+    <t t-name="OwlThreeJs" owl="1">
+        <h1>dkssdsddlkd</h1>
+    </t>
+
 </templates>
