@@ -3,16 +3,11 @@ odoo.define("website_owl.owl_widget_threejs", async function (require) {
   const Slider = require("website_owl.owl_widget_slider");
   const { Component } = owl;
 
-  await owl.utils.loadJS("/website_owl/static/lib/three.js");
-  await owl.utils.whenReady();
-
   class OwlThreeJS extends Component {
     static template = "OwlThreeJs";
     static components = { Slider: Slider };
 
-    constructor() {
-      super(...arguments);
-
+    setup() {
       this.bus = this.env.bus;
       this.y = 0.01;
       this.z = 0.01;
@@ -24,12 +19,15 @@ odoo.define("website_owl.owl_widget_threejs", async function (require) {
         this._change_rotation_speed.bind(this)
       );
     }
+    async willStart() {
+      await owl.utils.loadJS("/website_owl/static/lib/three.js");
+    }
 
-    mounted = () => {
+    mounted() {
       this._createScene();
-    };
+    }
 
-    _change_rotation_speed = (el) => {
+    _change_rotation_speed(el) {
       switch (el.type) {
         case "x":
           this.x = el.rotSpeed / 100;
@@ -45,9 +43,9 @@ odoo.define("website_owl.owl_widget_threejs", async function (require) {
         default:
           console.log("None");
       }
-    };
+    }
 
-    _createScene = () => {
+    _createScene() {
       this.$target = $(this.el).find(".threejs-canvas");
       this.scene = new THREE.Scene();
       this.camera = new THREE.PerspectiveCamera(
@@ -65,17 +63,17 @@ odoo.define("website_owl.owl_widget_threejs", async function (require) {
       this.scene.add(cube);
       this.camera.position.z = 15;
       this._render();
-    };
+    }
 
-    _render = () => {
-      requestAnimationFrame(this._render);
+    _render() {
+      requestAnimationFrame(() => this._render());
       this.renderer.render(this.scene, this.camera);
       this.scene.rotation.z += this.z;
       this.scene.rotation.y += this.y;
       this.scene.rotation.x += this.x;
-    };
+    }
 
-    _add_mesh = (num) => {
+    _add_mesh(num) {
       var geo_added = new THREE.BoxGeometry(
         this._random(),
         this._random(),
@@ -87,11 +85,11 @@ odoo.define("website_owl.owl_widget_threejs", async function (require) {
       var added_cube = new THREE.Mesh(geo_added, mat_added);
       added_cube.position.set(this._random(), this._random(), this._random());
       this.scene.add(added_cube);
-    };
+    }
 
-    _random = () => {
+    _random() {
       return (-3 << 3) * Math.random();
-    };
+    }
   }
   return OwlThreeJS;
 });

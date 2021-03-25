@@ -4,9 +4,7 @@ odoo.define("website_owl.owl_widget_slider", async function (require) {
   const { Component, tags, useState } = owl;
   const { xml, css } = tags;
 
-  await owl.utils.loadJS("/website_owl/static/lib/bootstrap-slider.js");
-  //MISSING ==> loadCSS;
-  await owl.utils.whenReady();
+  //MISSING ==> loadCSS; ajax.loadCSS
 
   class OwlSlider extends Component {
     static template = xml`
@@ -455,8 +453,8 @@ odoo.define("website_owl.owl_widget_slider", async function (require) {
         opacity: 1;
       }
     `;
-    constructor() {
-      super(...arguments);
+
+    setup() {
       this.state = useState({
         slider_value: this.props.slider_value,
       });
@@ -464,21 +462,25 @@ odoo.define("website_owl.owl_widget_slider", async function (require) {
       this.bus = this.env.bus;
     }
 
-    mounted = () => {
+    async willStart() {
+      await owl.utils.loadJS("/website_owl/static/lib/bootstrap-slider.js");
+    }
+
+    mounted() {
       const slider_component = new Slider(
         $(this.el).find(".owl-slider-component")[0]
       );
       slider_component.setValue(parseInt(this.state.slider_value));
-      slider_component.on("slide", this._on_slide_change.bind(self));
-    };
+      slider_component.on("slide", this._on_slide_change.bind(this));
+    }
 
-    _on_slide_change = (e) => {
+    _on_slide_change(e) {
       this.state.slider_value = parseInt(e);
       this.bus.trigger("changeRotSpeed", {
         rotSpeed: e,
         type: this.props.type,
       });
-    };
+    }
   }
 
   return OwlSlider;
