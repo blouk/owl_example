@@ -11,9 +11,9 @@
         <div>
             <div class="threejs-canvas"/>
             <div>
-                <Slider title="'X Rotation Speed'" slider_value="1" type="'x'"/>
-                <Slider title="'Y Rotation Speed'" slider_value="1" type="'y'"/>
-                <Slider title="'Z Rotation Speed'" slider_value="1" type="'z'"/>
+                <Slider title="'X Rotation Speed'" slider_value="1"  t-on-slide="updateRotationSpeed('x')"/>
+                <Slider title="'Y Rotation Speed'" slider_value="1"  t-on-slide="updateRotationSpeed('y')"/>
+                <Slider title="'Z Rotation Speed'" slider_value="1"  t-on-slide="updateRotationSpeed('z')"/>
             </div>
         </div>
     </t>
