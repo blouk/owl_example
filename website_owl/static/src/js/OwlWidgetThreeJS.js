@@ -36,6 +36,7 @@ odoo.define("website_owl.owl_widget_threejs", async function (require) {
 
         case "z":
           this.y = el.rotSpeed / 100;
+
           break;
         default:
           console.log("None");
