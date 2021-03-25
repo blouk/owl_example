@@ -16,6 +16,7 @@ odoo.define("website_owl.owl_widget_threejs", async function (require) {
       this.bus = this.env.bus;
       this.y = 0.01;
       this.z = 0.01;
+      this.x = 0.01;
       this.bus.on("add_mesh", null, this._add_mesh.bind(this));
       this.bus.on(
         "changeRotSpeed",
@@ -30,13 +31,16 @@ odoo.define("website_owl.owl_widget_threejs", async function (require) {
 
     _change_rotation_speed = (el) => {
       switch (el.type) {
+        case "x":
+          this.x = el.rotSpeed / 100;
+          break;
+
         case "y":
           this.y = el.rotSpeed / 100;
           break;
 
         case "z":
           this.y = el.rotSpeed / 100;
-
           break;
         default:
           console.log("None");
@@ -68,6 +72,7 @@ odoo.define("website_owl.owl_widget_threejs", async function (require) {
       this.renderer.render(this.scene, this.camera);
       this.scene.rotation.z += this.z;
       this.scene.rotation.y += this.y;
+      this.scene.rotation.x += this.x;
     };
 
     _add_mesh = (num) => {
