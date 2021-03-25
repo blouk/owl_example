@@ -1,3 +1,13 @@
+$ratio: 16/9;
+$size: 500px;
+
 .owl-example {
   font-size: 2rem;
+}
+
+.owl-threejs {
+  .threejs-canvas {
+    height: $size;
+    width: $size * $ratio;
+  }
 }

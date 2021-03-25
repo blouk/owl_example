@@ -1,14 +1,20 @@
 <templates>
     <t t-name="OwlClickAlert" owl="1">
         <div class="alert alert-primary" role="alert">
-            <button t-on-click="state.value++">
-                Click! [<t t-esc="state.value"/>]
+            <button t-on-click="_on_click">
+                Added Meshe(s)! [<t t-esc="state.value"/>]
             </button>
         </div>
     </t>
 
     <t t-name="OwlThreeJs" owl="1">
-        <h1>dkssdsddlkd</h1>
+        <div>
+            <div class="threejs-canvas"/>
+            <div>
+                <Slider title="'Y Rotation Speed'" slider_value="1" type="'y'"/>
+                <Slider title="'Z Rotation Speed'" slider_value="1" type="'z'"/>
+            </div>
+        </div>
     </t>
 
 </templates>
