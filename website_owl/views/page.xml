@@ -11,8 +11,9 @@
                     <div id="wrap">
                         <div class="container">
                             <h1 class="mt8">Owl Examples</h1>
-                            <div class="owl-click"/>
-                            <div class="owl-threejs"/>
+                            <div class="owl-click mb16"/>
+                            <div class="owl-threejs mb16"/>
+                            <div class="owl-partners mb16"/>
                         </div>
                     </div>
                 </t>

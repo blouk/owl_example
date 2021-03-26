@@ -1,8 +1,8 @@
 <templates>
     <t t-name="OwlClickAlert" owl="1">
         <div class="alert alert-primary" role="alert">
-            <button t-on-click="_on_click">
-                Added Meshe(s)! [<t t-esc="state.value"/>]
+            <button class="btn btn-primary" t-on-click="_on_click">
+                Added Meshe(s)! [<strong><t t-esc="state.value"/></strong>]
             </button>
         </div>
     </t>
@@ -11,10 +11,28 @@
         <div>
             <div class="threejs-canvas"/>
             <div>
-                <Slider title="'X Rotation Speed'" slider_value="1"  t-on-slide="updateRotationSpeed('x')"/>
-                <Slider title="'Y Rotation Speed'" slider_value="1"  t-on-slide="updateRotationSpeed('y')"/>
-                <Slider title="'Z Rotation Speed'" slider_value="1"  t-on-slide="updateRotationSpeed('z')"/>
+                <Slider title="'X Rotation Speed'" slider_value="1" t-on-slide="updateRotationSpeed('x')"/>
+                <Slider title="'Y Rotation Speed'" slider_value="1" t-on-slide="updateRotationSpeed('y')"/>
+                <Slider title="'Z Rotation Speed'" slider_value="1" t-on-slide="updateRotationSpeed('z')"/>
             </div>
+        </div>
+    </t>
+
+    <t t-name="OwlPartnersCard" owl="1">
+        <div class="row">
+            <t t-foreach="partners" t-as="partner">
+                <div class="col-4 mb16">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-globe fa-fw" aria-hidden="false"></i>
+                            <span><t t-esc="partner.city"/></span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><t t-esc="partner.name"/></h5>
+                        </div>
+                    </div>
+                </div>
+            </t>
         </div>
     </t>
 
